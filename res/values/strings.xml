@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TaskReminderApp</string>
+    <string name="app_name">Task Reminder App</string>
+    <string name="no_reminders">No Reminders Yet.</string>
+
 </resources>
