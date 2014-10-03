@@ -9,4 +9,6 @@
     <string name="confirm">Confirm</string>
     <string name="select_date">Select Date</string>
     <string name="select_time">Select Time</string>
+    <string name="menu_insert">Add Reminder</string>
+    <string name="menu_delete">Delete Reminder</string>
 </resources>
