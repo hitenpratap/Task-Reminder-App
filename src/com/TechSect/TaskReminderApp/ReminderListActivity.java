@@ -62,4 +62,17 @@ public class ReminderListActivity extends ListActivity {
         super.onActivityResult(requestCode,resultCode,intent);
     }
 
+
+    public boolean onContextItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.menuDelete:
+                //Delete the Task
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    
+
+
 }
