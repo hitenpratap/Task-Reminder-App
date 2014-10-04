@@ -33,6 +33,7 @@ public class ReminderEditActivity extends Activity {
             Bundle extras = getIntent().getExtras();
             int rowId = extras!=null?extras.getInt("RowId"): -1;
         }
+        mCalendar = Calendar.getInstance();
         mDateButton = (Button)findViewById(R.id.date);
         mTimeButton = (Button) findViewById(R.id.time);
         registerButtonListenersAndSetDefaultText();
@@ -51,7 +52,6 @@ public class ReminderEditActivity extends Activity {
                 showDialog(TIME_PICKER_DIALOG);
             }
         });
-        mCalendar = Calendar.getInstance();
         updateDateButtonText();
         updateTimeButtonText();
     }
@@ -67,7 +67,7 @@ public class ReminderEditActivity extends Activity {
     }
 
     private DatePickerDialog showDatePicker(){
-        return new DatePickerDialog(this,new DatePickerDialog.OnDateSetListener(){
+        return new DatePickerDialog(ReminderEditActivity.this,new DatePickerDialog.OnDateSetListener(){
             public void onDateSet(DatePicker view,int year,int monthOfYear,int dayOfMonth){
                 mCalendar.set(Calendar.YEAR, year);
                 mCalendar.set(Calendar.MONTH, monthOfYear);
@@ -97,7 +97,7 @@ public class ReminderEditActivity extends Activity {
     private void updateTimeButtonText(){
         SimpleDateFormat dateFormat = new SimpleDateFormat(TIME_FORMAT);
         String timeForButton = dateFormat.format(mCalendar.getTime());
-        mDateButton.setText(timeForButton);
+        mTimeButton.setText(timeForButton);
     }
 
 
