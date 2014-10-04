@@ -16,6 +16,7 @@ public class ReminderListActivity extends ListActivity {
      * Called when the activity is first created.
      */
 
+    private static final int ACTIVITY_EDIT = 1;
     private ReminderDBAdapter dbAdapter;
 
     @Override
@@ -35,7 +36,7 @@ public class ReminderListActivity extends ListActivity {
 
         int[] to = new int[]{R.id.text1};
 
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,R.layout.reminder_list,reminderCursors,from,to);
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,R.layout.reminder_row,reminderCursors,from,to);
         setListAdapter(adapter);
     }
 
@@ -43,7 +44,7 @@ public class ReminderListActivity extends ListActivity {
         super.onListItemClick(listView,view,position,id);
         Intent intent = new Intent(this,ReminderEditActivity.class);
         intent.putExtra(ReminderDBAdapter.KEY_ROWID,id);
-        startActivity(intent);
+        startActivityForResult(intent,ACTIVITY_EDIT);
     }
 
     public void onCreateContextMenu(ContextMenu contextMenu, View view,ContextMenu.ContextMenuInfo contextMenuInfo){

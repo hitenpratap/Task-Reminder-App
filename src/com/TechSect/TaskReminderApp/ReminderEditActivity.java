@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by hitenpratap on 28/9/14.
@@ -29,15 +33,16 @@ public class ReminderEditActivity extends Activity {
     private EditText bodyText;
     private Button confirmBtn;
 
+    private Long rowId;
+
     private ReminderDBAdapter dbAdapter;
 
-    public void onCreate(Bundle savedInstance){
-        super.onCreate(savedInstance);
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.reminder_edit);
-        if(getIntent()!=null){
-            Bundle extras = getIntent().getExtras();
-            int rowId = extras!=null?extras.getInt("RowId"): -1;
-        }
+
+        rowId = savedInstanceState!=null?savedInstanceState.getLong(ReminderDBAdapter.KEY_ROWID) : null;
+
         mCalendar = Calendar.getInstance();
         mDateButton = (Button)findViewById(R.id.date);
         mTimeButton = (Button) findViewById(R.id.time);
@@ -48,6 +53,51 @@ public class ReminderEditActivity extends Activity {
         confirmBtn = (Button)findViewById(R.id.confirm);
 
         registerButtonListenersAndSetDefaultText();
+    }
+
+    private void setRowIdFromIntent(){
+        if(rowId == null){
+           Bundle extras = getIntent().getExtras();
+            rowId = extras!=null?extras.getLong(ReminderDBAdapter.KEY_ROWID):null;
+        }
+    }
+
+    protected void onPause(){
+        super.onPause();
+        dbAdapter.close();
+    }
+
+    protected void onResume(){
+        super.onResume();
+        dbAdapter.open();
+        setRowIdFromIntent();
+        populateFields();
+    }
+
+    private void populateFields(){
+        if(rowId!=null){
+            Cursor reminder = dbAdapter.fetchReminder(rowId);
+            startManagingCursor(reminder);
+            titleText.setText(reminder.getString(reminder.getColumnIndexOrThrow(ReminderDBAdapter.KEY_TITLE)));
+            bodyText.setText(reminder.getString(reminder.getColumnIndexOrThrow(ReminderDBAdapter.KEY_BODY)));
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_FORMAT);
+            Date date = null;
+            try{
+                String dateString = reminder.getString(reminder.getColumnIndexOrThrow(ReminderDBAdapter.KEY_DATE_TIME));
+                date = dateFormat.parse(dateString);
+                mCalendar.setTime(date);
+            }catch (ParseException pe){
+                Log.e("ReminderEditActivity", pe.getMessage(), pe);
+            }
+        }
+        updateTimeButtonText();
+        updateDateButtonText();
+    }
+
+    protected void onSaveInstanceState(Bundle savedState){
+        super.onSaveInstanceState(savedState);
+        savedState.putLong(ReminderDBAdapter.KEY_ROWID,rowId);
     }
 
     private void registerButtonListenersAndSetDefaultText() {
@@ -84,7 +134,15 @@ public class ReminderEditActivity extends Activity {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_FORMAT);
         String reminderDateTime = dateFormat.format(mCalendar.getTime());
-        long id = dbAdapter.createReminder(title,body,reminderDateTime);
+
+        if(rowId == null){
+            long id= dbAdapter.createReminder(title,body,reminderDateTime);
+            if(id > 0)
+                rowId = id;
+        }else{
+            dbAdapter.updateReminder(rowId,title,body,reminderDateTime);
+        }
+
     }
 
     protected Dialog onCreateDialog(int id){
