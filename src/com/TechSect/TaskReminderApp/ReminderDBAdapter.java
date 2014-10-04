@@ -71,6 +71,14 @@ public class ReminderDBAdapter {
         return cursor;
     }
 
+    public boolean updateReminder(long rowId,String title,String body, String reminderDateTime){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_TITLE,title);
+        contentValues.put(KEY_BODY,body);
+        contentValues.put(KEY_DATE_TIME,reminderDateTime);
+        return database.update(DATABASE_Table,contentValues,KEY_ROWID+" = "+rowId,null) > 0;
+    }
+
 
     public static class DataBaseHelper extends SQLiteOpenHelper{
 
