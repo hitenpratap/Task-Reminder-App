@@ -53,6 +53,10 @@ public class ReminderDBAdapter {
         return database.insert(DATABASE_Table,null,contentValues);
     }
 
+    public boolean deleteReminder(long rowId){
+        return database.delete(DATABASE_Table,KEY_ROWID+"="+rowId,null) > 0;
+    }
+
 
     public static class DataBaseHelper extends SQLiteOpenHelper{
 
