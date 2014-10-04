@@ -11,4 +11,5 @@
     <string name="select_time">Select Time</string>
     <string name="menu_insert">Add Reminder</string>
     <string name="menu_delete">Delete Reminder</string>
+    <string name="taskSavedMessage">Task Saved SuccessFully.</string>
 </resources>

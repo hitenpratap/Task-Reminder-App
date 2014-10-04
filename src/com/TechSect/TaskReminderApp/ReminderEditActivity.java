@@ -6,9 +6,7 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
+import android.widget.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,6 +23,13 @@ public class ReminderEditActivity extends Activity {
     private Calendar mCalendar;
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String TIME_FORMAT = "kk:mm";
+    public static final String DATE_TIME_FORMAT = "yyyy-MM-dd kk:mm:ss";
+
+    private EditText titleText;
+    private EditText bodyText;
+    private Button confirmBtn;
+
+    private ReminderDBAdapter dbAdapter;
 
     public void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
@@ -36,6 +41,12 @@ public class ReminderEditActivity extends Activity {
         mCalendar = Calendar.getInstance();
         mDateButton = (Button)findViewById(R.id.date);
         mTimeButton = (Button) findViewById(R.id.time);
+        dbAdapter = new ReminderDBAdapter(this);
+
+        titleText = (EditText)findViewById(R.id.title);
+        bodyText = (EditText)findViewById(R.id.body);
+        confirmBtn = (Button)findViewById(R.id.confirm);
+
         registerButtonListenersAndSetDefaultText();
     }
 
@@ -52,8 +63,28 @@ public class ReminderEditActivity extends Activity {
                 showDialog(TIME_PICKER_DIALOG);
             }
         });
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveState();
+                setResult(RESULT_OK);
+                Toast.makeText(ReminderEditActivity.this,getString(R.string.taskSavedMessage),Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
         updateDateButtonText();
         updateTimeButtonText();
+    }
+
+    public void saveState(){
+        String title = titleText.getText().toString();
+        String body = bodyText.getText().toString();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_FORMAT);
+        String reminderDateTime = dateFormat.format(mCalendar.getTime());
+        long id = dbAdapter.createReminder(title,body,reminderDateTime);
     }
 
     protected Dialog onCreateDialog(int id){
