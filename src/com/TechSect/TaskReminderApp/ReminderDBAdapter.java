@@ -26,8 +26,8 @@ public class ReminderDBAdapter {
 
     private SQLiteDatabase database;
 
-    private static final String DATABASE_CREATE = "create table "+DATABASE_Table+" ("+KEY_ROWID+"" +
-            "integer primary key autoincrement, "+KEY_TITLE+" text not null,"
+    private static final String DATABASE_CREATE = "create table "+DATABASE_Table+" ("+KEY_ROWID+
+            " integer primary key autoincrement, "+KEY_TITLE+" text not null,"
             +KEY_BODY+" text not null, "+KEY_DATE_TIME+" text not null);";
 
     private final Context context;
