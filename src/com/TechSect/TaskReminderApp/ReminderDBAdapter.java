@@ -2,6 +2,7 @@ package com.TechSect.TaskReminderApp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -55,6 +56,11 @@ public class ReminderDBAdapter {
 
     public boolean deleteReminder(long rowId){
         return database.delete(DATABASE_Table,KEY_ROWID+"="+rowId,null) > 0;
+    }
+
+    public Cursor fetchAllReminders(){
+        return database.query(DATABASE_Table,new String[]{KEY_ROWID,KEY_TITLE,KEY_BODY,KEY_DATE_TIME},null
+                ,null,null,null,null);
     }
 
 
