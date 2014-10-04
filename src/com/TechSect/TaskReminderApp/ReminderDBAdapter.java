@@ -1,5 +1,6 @@
 package com.TechSect.TaskReminderApp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -42,6 +43,14 @@ public class ReminderDBAdapter {
 
     public void close(){
         database.close();
+    }
+
+    public long createReminder(String title,String body,String reminderDateTime){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_TITLE,title);
+        contentValues.put(KEY_BODY,body);
+        contentValues.put(KEY_DATE_TIME,reminderDateTime);
+        return database.insert(DATABASE_Table,null,contentValues);
     }
 
 
