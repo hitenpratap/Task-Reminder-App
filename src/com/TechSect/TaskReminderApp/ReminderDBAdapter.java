@@ -63,6 +63,14 @@ public class ReminderDBAdapter {
                 ,null,null,null,null);
     }
 
+    public Cursor fetchReminder(long rowId){
+        Cursor cursor = database.query(true,DATABASE_Table,new String[]{KEY_ROWID,KEY_TITLE,KEY_BODY,KEY_DATE_TIME},
+                KEY_ROWID+" = "+rowId,null,null,null,null,null);
+        if(cursor!=null)
+            cursor.moveToFirst();
+        return cursor;
+    }
+
 
     public static class DataBaseHelper extends SQLiteOpenHelper{
 
