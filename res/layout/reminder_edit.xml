@@ -14,7 +14,7 @@
 		  android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
 			/>
-		<TextView android:layout_width="wrap_content"
+		<TextView android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
 			android:text="@string/body" />
 		<EditText android:id="@+id/body" android:layout_width="fill_parent"
@@ -22,25 +22,25 @@
 			android:minLines="5"
 			android:scrollbars="vertical" 
 			android:gravity="top" />
-		<TextView android:layout_width="wrap_content"
+		<TextView android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
 			android:text="@string/date" />
 		<Button 
 			android:id="@+id/reminder_date"
 			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
+			android:layout_width="fill_parent"
 			/>
-		<TextView android:layout_width="wrap_content"
+		<TextView android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
 			android:text="@string/time" />
 		<Button 
 			android:id="@+id/reminder_time"
 			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
+			android:layout_width="fill_parent"
 			/>
 		<Button android:id="@+id/confirm" 
 		  android:text="@string/confirm"
-			android:layout_width="wrap_content"
+			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" />
 	</LinearLayout>
 </ScrollView>
