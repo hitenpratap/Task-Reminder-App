@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
-  xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+  xmlns:fontawesometext="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_delete"
           android:title="@string/menu_delete" />
 </menu>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-  xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+  xmlns:fontawesometext="http://schemas.android.com/apk/res-auto">
 
 	<PreferenceCategory 
 		android:key="@string/pref_category_task_defaults_key" 

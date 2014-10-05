@@ -4,14 +4,17 @@
             android:icon="@drawable/icon"
             android:debuggable="true"
             android:label="@string/app_name">
-        <activity android:name=".ReminderListActivity" android:label="@string/app_name">
+        <activity android:name=".ReminderListActivity" android:label="@string/app_name"
+                android:theme="@android:style/Theme.Holo.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReminderEditActivity" android:label="@string/edit_reminder_title"/>
-        <activity android:name=".TaskPreferences" android:label="@string/app_name" />
+        <activity android:name=".ReminderEditActivity" android:label="@string/edit_reminder_title"
+                  android:theme="@android:style/Theme.Holo.Light"/>
+        <activity android:name=".TaskPreferences" android:label="@string/app_name"
+                  android:theme="@android:style/Theme.Holo.Light"/>
         <receiver android:name=".OnBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -21,7 +24,7 @@
         <service android:name=".ReminderService" />
     </application>
 
-    <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="14" />
+    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="14" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />

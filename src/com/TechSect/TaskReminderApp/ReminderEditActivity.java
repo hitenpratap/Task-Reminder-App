@@ -21,6 +21,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapEditText;
 
 public class ReminderEditActivity extends Activity {
 
@@ -37,11 +39,11 @@ public class ReminderEditActivity extends Activity {
 	private static final String TIME_FORMAT = "kk:mm";
 	public static final String DATE_TIME_FORMAT = "yyyy-MM-dd kk:mm:ss";
 	
-	private EditText mTitleText;
-    private EditText mBodyText;
+	private BootstrapEditText mTitleText;
+    private BootstrapEditText mBodyText;
     private Button mDateButton;
     private Button mTimeButton;
-    private Button mConfirmButton;
+    private BootstrapButton mConfirmButton;
     private Long mRowId;
     private RemindersDbAdapter mDbHelper;
     private Calendar mCalendar;  
@@ -55,12 +57,12 @@ public class ReminderEditActivity extends Activity {
         setContentView(R.layout.reminder_edit);
         
         mCalendar = Calendar.getInstance(); 
-        mTitleText = (EditText) findViewById(R.id.title);
-        mBodyText = (EditText) findViewById(R.id.body);
+        mTitleText = (BootstrapEditText) findViewById(R.id.title);
+        mBodyText = (BootstrapEditText) findViewById(R.id.body);
         mDateButton = (Button) findViewById(R.id.reminder_date);
         mTimeButton = (Button) findViewById(R.id.reminder_time);
       
-        mConfirmButton = (Button) findViewById(R.id.confirm);
+        mConfirmButton = (BootstrapButton) findViewById(R.id.confirm);
        
         mRowId = savedInstanceState != null ? savedInstanceState.getLong(RemindersDbAdapter.KEY_ROWID) 
                 							: null;
