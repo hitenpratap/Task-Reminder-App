@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
-    <LinearLayout android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:text="@string/title"/>
-            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:id="@+id/title"/>
-            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:text="@string/body"/>
-            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:id="@+id/body"
-                    android:minLines="5"
-                    android:scrollbars="vertical"/>
-            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-                      android:text="@string/date"/>
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
-                      android:id="@+id/date" android:text="@string/select_date"/>
-            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-                      android:text="@string/time"/>
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:id="@+id/time" android:text="@string/select_time"/>
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:id="@+id/confirm" android:text="@string/confirm"/>
-
-
-    </LinearLayout>
-
+<ScrollView 
+	xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<LinearLayout	
+		android:orientation="vertical" 
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:text="@string/title" />
+		<EditText android:id="@+id/title" 
+		  android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			/>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:text="@string/body" />
+		<EditText android:id="@+id/body" android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:minLines="5"
+			android:scrollbars="vertical" 
+			android:gravity="top" />
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:text="@string/date" />
+		<Button 
+			android:id="@+id/reminder_date"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			/>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:text="@string/time" />
+		<Button 
+			android:id="@+id/reminder_time"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			/>
+		<Button android:id="@+id/confirm" 
+		  android:text="@string/confirm"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
 </ScrollView>
