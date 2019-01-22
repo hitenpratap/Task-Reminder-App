@@ -31,9 +31,9 @@ This App uses a number of Tools to work properly:
 Installation
 --------------
 * [Task Reminder APK](https://github.com/hitenpratap/Task-Reminder-App/blob/master/TaskReminderApp.apk?raw=true) - Just download it from here and enjoy.
-* 
-```Just download the app from repo and install it on your android device.
-```
 
+```
+Just download the app from repo and install it on your android device.
+```
 
 **Open Source Software, Hell Yeah!**
